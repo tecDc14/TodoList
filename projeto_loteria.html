@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <script>
+            var setup = {
+                listasDeFilmes:[],
+                pesquiseFilmesComALetra:function(valor){
+                    var listaVip = this.listasDeFilmes.filter(function(item) {
+                       return item.title.toLowerCase().includes(valor) ? true : false   
+                    })
+                    this.exibirNaTela(listaVip)
+                },
+                adicionarFilme: function(valor){
+                    script.split
+
+                },
+                removerFilme: function(valor){
+
+
+                },
+                exibirNaTela: function(xbox){
+                    document.getElementById("noite").innerHTML = ""
+                    xbox.map (valor => { 
+                    document.getElementById("noite").innerHTML += valor.title + "<br/>";
+                     })
+                }
+
+            }
+           fetch("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=star%20wars%27")
+           .then(function(xbox){
+                return xbox.json();
+           })
+           .then(function(xbox){
+                setup.listasDeFilmes = xbox.results
+                setup.listasDeFilmes.map(function(item){
+                    document.getElementById("noite").innerHTML += item.title + "<br/>";
+                })
+                console.log(setup.listasDeFilmes)
+           })
+        </script>
+        <div class="w-full h-full bg-cerceta-200 justify-center flex">
+            <div id="containerGeral" class=" w-1/2 bg-stone-100">
+                <div id="titulo" class="bg-emerald-300">
+                    <div class="text-center text-2xl px-5 py-20">Projeto TeleSena </div>
+                </div>
+                <div id="containerSite" class="flex">
+                    <div class="w-1/2 text-center px-5">
+                        <h2 class="text-center font-bold">Sortear</h2>
+                        <input onclick="teleSena()"
+                    class="bg-blue-300 hover:bg-slate-500 my-5 py-2 " 
+                        type="button" value="gerar jogo"/>
+                    </div>
+                    <div class="w-1/2 text-center px-5">
+                        <h2 class="text-center font-bold">Escolhidos</h2>
+                        <div id="noite" class="flex">
+
+                        </div>
+                    </div>
+                
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

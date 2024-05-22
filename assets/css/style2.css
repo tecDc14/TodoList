@@ -1,0 +1,12 @@
+
+#familia{
+   background: url("/assets/img/hero.png") no-repeat center #ac3030;
+   background-size: cover;
+}
+h1{
+   
+  font-family: "Grandstander", cursive;
+  font-optical-sizing: auto;
+  
+  font-style: normal;
+}

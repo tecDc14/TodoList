@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        
+        <link rel="stylesheet" href="/assets/css/style.css">
+    </head>
+        <body>
+           <div id="containergeral" class="flex flex-row bg-purple-200 h-full  justify-center ">
+            <script>
+                function adicionar(){
+                    var nome = document.getElementById("nome").value;
+                    var senha = document.getElementById("cpf").value; 
+               
+                    document.getElementById("coisas").innerHTML = nome 
+                    document.getElementById("ceu").innerHTML = senha
+                }
+                function somar(){
+                    var adicao = document.getElementById("adicao").value;
+                    var subtracao = document.getElementById("subtracao").value; 
+
+                    document.getElementById("soma").innerHTML =  parseInt(adicao) + parseInt(subtracao)
+                }
+            </script>
+            <div id="containerSite" class="w-4/6 bg-blue-200">
+            <div id="menu">
+                <ul class="flex bg-slate-200 px-2 py-3 justify-center">
+                    <li class="px-2">home</li>
+                    <li class="px-2">quem somos</li>
+                    <li class="px-2">planos</li>
+                    <li class="px-2">contatos</li>
+                </ul>
+            </div>
+            <div id=""
+                <div id="principal" class="flex flex-row h-full bg-red-200">
+                    <section id ="main" class="h-[50%] w-1/2 bg-blue-200" >
+                        <form>
+                            <div class="w-full p-20"><input class="w-full" type="text" id="nome"></div>
+                            <div class="w-full p-20"><input class="w-full" type="password" id="cpf"></div>
+                            <div class="w-full p-20"><input class="w-full" type="button" onclick="adicionar()" value="enviar" id="vida"></div>
+                            <div id="coisas"></div> 
+                            <div id="ceu"></div>
+                            <div id="soma"></div>
+                        </form>
+                    </section>
+           
+                    <section id="filho" class="h-[50%] w-1/2 bg-slate-200">
+                        <div class="w-fuul p-20"><input class="w-full" type="number" id="adicao"></div>
+                        <div class="w-full p-20"><input class="w-full" type="number" id="subtracao"></div>
+                        <div class="w-full p-20"><input class="w-full" type="button" onclick="somar()" value="enviar" id="vida"></div>
+                        <div id="coisas"></div> 
+                       <div id="ceu"></div>
+                       <div id="soma"></div>
+
+                    </section>
+                </div>                          
+            </div>
+        </body>
+</html>     

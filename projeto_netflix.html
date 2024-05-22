@@ -1,0 +1,204 @@
+<html>
+    <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+
+        <nav id="navbar" class="w-full h-[150px] bg-blue-700 flex item-center justify-center ">
+            <div class="w-[700px] h-[35px] bg-white text-center my-[50px] rounded-md">
+                <input type="text" id="palavra" class="w-full h-full" onkeyup="avancada(event)">
+            </div>
+        </nav>
+
+
+            <div id="sobre" class="fixed top-[25%] left-[17%] w-2/3 h-2/3 z-1 bg-purple-200 rounded-md shadow-2xl" style="display: none;" >
+                
+            </div>
+
+        <div id="geral" >
+
+           
+
+        </div>
+
+            <div>
+                
+            </div>
+
+            <script>
+
+
+
+                function avancada(event){
+                    var valor = event.key
+                    var duda = event.target.value
+
+                    if(valor == "Enter" && duda != ""){
+                    fetch(`https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=${duda}`)
+                    .then(item => item.json())
+                    .then(item=>  {
+                        document.getElementById("geral").innerHTML = "";
+                        exibirDadosNaTela(item.results);
+
+                    })
+                }
+                    if(duda == ""){
+                   document.getElementById("geral").innerHTML = "";
+                    config.buscarGeneros()
+                }
+
+                    }
+                
+
+                function exibirDadosNaTela(netflix){
+
+                    var listaFilmes = "";
+                        netflix.map( item => {
+                            var filmes = `
+                        <div class="w-[200px] mx-2" titulo = ${item.title}>
+                            <div class="border">
+                                <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' class="w-[200px] " loading="lazy" />
+                            </div>
+
+                             <div class="font-bold">
+                                <h1>${item.title}</h1>
+                            </div>
+
+                            <div class="text-slate-300">
+                                <p>${item.release_date}</p>
+                            </div>
+
+                         </div>
+                            `
+                            listaFilmes += filmes
+                        })
+
+                    var filmesEmGeral = 
+                        `<div class="w-full bg-red-800 my-10">
+                        
+                                <div id="series" class="grid grid-cols-5 gap-4">
+                                ${listaFilmes}
+                                </div>
+                        </div>`
+
+                        document.getElementById("geral").insertAdjacentHTML("beforeend",filmesEmGeral);
+                }
+
+                function showPopup(id){
+                    console.log(id)
+                    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb`)
+                    .then(index => index.json())
+                    .then(index =>{
+
+                        var divs =""
+                        var svid =""
+
+                        var genres = index.genres.map( item => {
+                            divs += `<div> ${item.name} </div>`
+                        })
+
+                        var production_companies = index.production_companies.map( item => {
+                            divs += `<div> ${item.name} </div>`
+                        })
+
+                        var popupData = `
+                         <div class="bg-indigo-400 p-3 rounded-t-md text-2xl font-bold text-white">${index.original_title}</div>
+                            <div class="grid-cols-2 gap-3 p-4">
+                                <div id="esquerda" class="flex bg-slate-200 rounded-lg">
+                                    <div class="p-3">
+                                        <img width="600" class="rounded-full ring-8 ring-indigo-400/50" src="https://image.tmdb.org/t/p/original/${index.backdrop_path}">
+                                    </div>
+                                    
+                                    <div class="p-3 text-2xl">
+                                        ${index.homepage} <br/>
+                                        <small class="text-sm">${index.overview}</small> 
+                                    </div>
+                                </div>
+
+                                <div id="direita">
+                                    <div class = "flex">
+                                        <div>${divs}</div>
+                                        <div class="w-full bg-slate-300 rounded-md font-bold p-2">
+                                            
+                                            ${svid}
+                                        </div>  
+
+                                    </div>
+                                </div>
+                                
+
+                         </div>
+                        `
+                    document.getElementById("sobre").innerHTML = "" ; 
+                    document.getElementById("sobre").insertAdjacentHTML("beforeend",popupData);
+                    document.getElementById("sobre").style.display = "block";
+
+                    console.log(index)
+                    })
+                }
+
+                var config = {
+
+                    exibirNaTela: function(caos,filmes){
+
+                            var listaFilmes = "";
+                        filmes.map( item => {
+                            var filmes = `
+                        <div class="w-[200px] mx-2" onclick="showPopup(${item.id})" titulo = ${item.title}>
+                            <div class="border">
+                                <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}' class="w-[200px] " loading="lazy" />
+                            </div>
+
+                             <div class="font-bold">
+                                <h1>${item.title}</h1>
+                            </div>
+
+                            <div class="text-slate-300">
+                                <p>${item.release_date}</p>
+                            </div>
+
+                         </div>
+                            `
+                            listaFilmes += filmes
+                        })
+
+
+
+                        var categoria = 
+                        `<div class="w-full bg-red-800 my-10">
+                                <h1 class="font-bold mx-[15px] my-10">${caos.title}</h1>
+                                <div id="series" class="grid grid-cols-5 gap-4">
+                                ${listaFilmes}
+                                </div>
+                        </div>`
+
+                         document.getElementById("geral").insertAdjacentHTML("beforeend" , categoria);
+
+                    },
+
+                    buscarGeneros: function(){
+                        fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb`)
+                        .then(function(dados){
+                            return dados.json();
+                        })
+                        .then(function(dados){
+                            dados.genres.map(function(item){
+
+                                 fetch(`https://api.themoviedb.org/3/genre/${item.id}/movies?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb`)
+                                .then(function(dados){
+                                    return dados.json();
+                                })
+                                .then(function(filmes){
+                                    config.exibirNaTela(item, filmes.results)
+                                })
+                            });                            
+                        })
+
+                      }  
+                    }
+                
+                    config.buscarGeneros()
+            </script>
+
+    </body>
+</html>

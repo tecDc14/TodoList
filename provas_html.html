@@ -1,0 +1,37 @@
+
+<html>
+    <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link src="assets/css/style.css">
+    </head>
+    <script>
+        function coisas (){
+            var titulo = "<h1>Meus contatos</h1>"
+            var conteudo = "<p>texto</p>"
+            document.getElementById("vida").innerHTML = titulo + conteudo
+        }
+        function noite(){
+            var titulo = "<h1>Meus contatos</h1>"
+            var conteudo = "<p>texto</p>"
+            document.getElementById("morte").innerHTML = titulo + conteudo
+        }
+
+    </script>
+    <div id="pai" class=" w-full h-full bg-stone-200 ">
+        <div id="titulo" class="w-full h-32 bg-stone-200 font-bold text-2xl text-center text-bold">Meu Portifólio</div> 
+            <div id="lado" class="w-full h-full bg-amber-100 flex">
+                <div id="canto" class="w-1/2 h-full bg-amber-200 justify-center item-center flex"></div>
+         <div id="foto" class="  w-1/2 h-1/2 px-[200px]  bg-stone-200  ">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCaruG99vPO_YTAvazsH5SkSicvj4WR5gkiw&s">
+         </div>
+         <div id="cadastro" class="w-1/2 h-full item-center flex justify-center bg-purple-200">
+            <div id="vida" > </div>
+            <div id="morte" > </div>
+            <h1 class="text-center font-bold">QUEM SOU EU?</h1>
+            <input type="button"value=" habilidade" onclick="noite()"> 
+            <input type="button"value=" cpf" onclick="coisas()">
+
+        </div>
+    </div>
+    
+</html>

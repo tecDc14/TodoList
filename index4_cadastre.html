@@ -1,0 +1,63 @@
+<html>
+    <head>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="/assets/css/style3.css">
+
+    </head>
+
+    <body>
+
+        <script>
+
+            function saveDados(){
+                var name = document.getElementById("dia").value 
+                var senhaAplicada = document.getElementById("noite").value
+                var fullName = document.getElementById("eclipse").value
+
+                localStorage.setItem("name" , name)
+                localStorage.setItem("senha" , senhaAplicada)
+                localStorage.setItem("fullName" , fullName)
+
+                alert("Vc se cadastrou. Tente novamente o LOGIN")
+
+            }
+        </script>
+
+        <div id="telefone" class="w-full h-full bg-stone-200 justify-center item-center flex ">
+
+            <div id="containerFamilia" class="w-[600px] h-[450px]  my-[200px] text-2xl text-center text-align font-bold rounded-xl ">
+
+                <div id="containerPai" class="w-full h-full  py-7 rounded-xl shadow-2xl hover: text-white  ">
+                        LOGIN
+
+
+                        <div id="containerFilho1" class=" py-7 hover: text-black">
+                            <input id="dia"  type="text" placeholder="Nome de  Usuário" required >
+
+                        </div>
+
+                        <div id="containerFilho2" class=" py-7 hover: text-black ">
+                            <input id="noite" type="password" placeholder="Senha" required >
+                        </div>
+
+                        <div id="containerFilho3" class="py-7 hover: text-black">
+                            <input id="eclipse" type="text" placeholder="Nome Completo" required>
+                        </div>
+
+                        <a href="index4.html" class="font-bold text-black">LOGIN </a>
+
+                        <div id="containerFilho4" class=" py-7 hover: text-black">
+                            <input type="submit" value="Finalizar" required id="botao" class="bg-black text-center rounded-xl hover:bg-blue-700 py-[15px] px-[20px] hover: text-white" onclick="saveDados()">
+                        </div>
+
+
+                </div>
+
+            </div>
+        
+        </div>
+    
+    </body>
+
+</html>
